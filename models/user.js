@@ -1,7 +1,10 @@
 const pool = require('../db');
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
-const secretKey = 'Top secret key';
+require('dotenv').config();
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PASSWORD;
+
 class User {
   static async createUser(username, email, password) {
     try {
@@ -45,6 +48,7 @@ class User {
   }
   static generateToken(user) {
     // Generate a token with user information
+    const secretKey = process.env.JWT_SECRET_KEY;
     return jwt.sign({ id: user.id, username: user.username, email: user.email }, secretKey, { expiresIn: '1h' });
   }
   static async getAllUsers() {
