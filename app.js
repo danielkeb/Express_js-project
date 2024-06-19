@@ -12,6 +12,9 @@ app.use(bodyParser.json());
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
+app.get('/about', function (req, res) {
+  res.send("hello this test from mopo");
+});
 
 // Start server
 app.listen(PORT, () => {

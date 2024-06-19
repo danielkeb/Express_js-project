@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const Course = require('../models/course');
+const app = express();
 
 // Multer configuration for file upload
 const storage = multer.diskStorage({
@@ -12,6 +13,10 @@ const storage = multer.diskStorage({
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     cb(null, file.fieldname + '-' + uniqueSuffix + '.pdf');
   }
+});
+
+app.get("/about", function(req, res) {
+  res.send("Welcome to our kingdom! this is called daniel software Engineer");
 });
 
 // Multer instance for handling file uploads
@@ -44,4 +49,3 @@ router.get('/', async (req, res) => {
 
 module.exports = router;
 
-module.exports= router;
